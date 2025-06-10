@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Z Say the Sound - Kids Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #e6f3ff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff2e63;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .alphabet-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            max-width: 800px;
+        }
+        .letter-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .letter-card:hover {
+            transform: scale(1.1);
+        }
+        .letter-card span {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        .letter-card p {
+            font-size: 1em;
+            color: #333;
+            margin: 5px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>A-Z Say the Sound!</h1>
+    <div class="alphabet-container">
+        <div class="letter-card" onclick="playSound('apple', 'A', 'Ay')"><span>🍎 A</span><p>Apple</p></div>
+        <div class="letter-card" onclick="playSound('bee', 'B', 'Bee')"><span>🐝 B</span><p>Bee</p></div>
+        <div class="letter-card" onclick="playSound('cat', 'C', 'See')"><span>😺 C</span><p>Cat</p></div>
+        <div class="letter-card" onclick="playSound('dog', 'D', 'Dee')"><span>🐶 D</span><p>Dog</p></div>
+        <div class="letter-card" onclick="playSound('elephant', 'E', 'Ee')"><span>🐘 E</span><p>Elephant</p></div>
+        <div class="letter-card" onclick="playSound('fish', 'F', 'Eff')"><span>🐠 F</span><p>Fish</p></div>
+        <div class="letter-card" onclick="playSound('giraffe', 'G', 'Jee')"><span>🦒 G</span><p>Giraffe</p></div>
+        <div class="letter-card" onclick="playSound('horse', 'H', 'Aitch')"><span>🐴 H</span><p>Horse</p></div>
+        <div class="letter-card" onclick="playSound('icecream', 'I', 'Eye')"><span>🍨 I</span><p>Ice cream</p></div>
+        <div class="letter-card" onclick="playSound('juice', 'J', 'Jay')"><span>🍓 J</span><p>Juice</p></div>
+        <div class="letter-card" onclick="playSound('kangaroo', 'K', 'Kay')"><span>🦘 K</span><p>Kangaroo</p></div>
+        <div class="letter-card" onclick="playSound('lion', 'L', 'Ell')"><span>🦁 L</span><p>Lion</p></div>
+        <div class="letter-card" onclick="playSound('monkey', 'M', 'Em')"><span>🐒 M</span><p>Monkey</p></div>
+        <div class="letter-card" onclick="playSound('nest', 'N', 'En')"><span>🪺 N</span><p>Nest</p></div>
+        <div class="letter-card" onclick="playSound('otter', 'O', 'Oh')"><span>🦦 O</span><p>Otter</p></div>
+        <div class="letter-card" onclick="playSound('penguin', 'P', 'Pee')"><span>🐧 P</span><p>Penguin</p></div>
+        <div class="letter-card" onclick="playSound('quail', 'Q', 'Cue')"><span>🦚 Q</span><p>Quail</p></div>
+        <div class="letter-card" onclick="playSound('rabbit', 'R', 'Ar')"><span>🐰 R</span><p>Rabbit</p></div>
+        <div class="letter-card" onclick="playSound('snake', 'S', 'Ess')"><span>🐍 S</span><p>Snake</p></div>
+        <div class="letter-card" onclick="playSound('tiger', 'T', 'Tee')"><span>🐯 T</span><p>Tiger</p></div>
+        <div class="letter-card" onclick="playSound('umbrella', 'U', 'You')"><span>☂️ U</span><p>Umbrella</p></div>
+        <div class="letter-card" onclick="playSound('violin', 'V', 'Vee')"><span>🎻 V</span><p>Violin</p></div>
+        <div class="letter-card" onclick="playSound('whale', 'W', 'Double-you')"><span>🐳 W</span><p>Whale</p></div>
+        <div class="letter-card" onclick="playSound('xylophone', 'X', 'Ex')"><span>🎷 X</span><p>Xylophone</p></div>
+        <div class="letter-card" onclick="playSound('yoyo', 'Y', 'Why')"><span>🪀 Y</span><p>Yo-yo</p></div>
+        <div class="letter-card" onclick="playSound('zebra', 'Z', 'Zee')"><span>🦓 Z</span><p>Zebra</p></div>
+    </div>
+
+    <script>
+        function playSound(item, letter, letterSound) {
+            // Play the letter sound (e.g., "Ay" for A)
+            const letterUtterance = new SpeechSynthesisUtterance(letterSound);
+            letterUtterance.rate = 0.8;
+            speechSynthesis.speak(letterUtterance);
+
+            // Play the narration (e.g., "A is for Apple") after a delay
+            setTimeout(() => {
+                const narrationUtterance = new SpeechSynthesisUtterance(`${letter} is for ${item.replace('icecream', 'ice cream')}`);
+                narrationUtterance.rate = 0.9;
+                speechSynthesis.speak(narrationUtterance);
+            }, 1000);
+
+            // Play the word's sound effect after narration
+            setTimeout(() => {
+                let sound;
+                switch (item) {
+                    case 'apple':
+                        sound = new Audio('https://www.soundjay.com/apple-bite-01.mp3');
+                        break;
+                    case 'bee':
+                        sound = new Audio('https://www.soundjay.com/bee-buzz-01.mp3');
+                        break;
+                    case 'cat':
+                        sound = new Audio('https://www.soundjay.com/cat-meow-01.mp3');
+                        break;
+                    case 'dog':
+                        sound = new Audio('https://www.soundjay.com/dog-bark-01.mp3');
+                        break;
+                    case 'elephant':
+                        sound = new Audio('https://www.soundjay.com/elephant-trumpet-01.mp3');
+                        break;
+                    case 'fish':
+                        sound = new Audio('https://www.soundjay.com/water-splash-01.mp3');
+                        break;
+                    case 'giraffe':
+                        sound = new Audio('https://www.soundjay.com/giraffe-snort-01.mp3');
+                        break;
+                    case 'horse':
+                        sound = new Audio('https://www.soundjay.com/horse-neigh-01.mp3');
+                        break;
+                    case 'icecream':
+                        sound = new Audio('https://www.soundjay.com/ice-cream-truck-01.mp3');
+                        break;
+                    case 'juice':
+                        sound = new Audio('https://www.soundjay.com/pour-drink-01.mp3');
+                        break;
+                    case 'kangaroo':
+                        sound = new Audio('https://www.soundjay.com/kangaroo-hop-01.mp3');
+                        break;
+                    case 'lion':
+                        sound = new Audio('https://www.soundjay.com/lion-roar-01.mp3');
+                        break;
+                    case 'monkey':
+                        sound = new Audio('https://www.soundjay.com/monkey-chatter-01.mp3');
+                        break;
+                    case 'nest':
+                        sound = new Audio('https://www.soundjay.com/bird-chirp-01.mp3');
+                        break;
+                    case 'otter':
+                        sound = new Audio('https://www.soundjay.com/otter-squeak-01.mp3');
+                        break;
+                    case 'penguin':
+                        sound = new Audio('https://www.soundjay.com/penguin-honk-01.mp3');
+                        break;
+                    case 'quail':
+                        sound = new Audio('https://www.soundjay.com/quail-call-01.mp3');
+                        break;
+                    case 'rabbit':
+                        sound = new Audio('https://www.soundjay.com/rabbit-squeak-01.mp3');
+                        break;
+                    case 'snake':
+                        sound = new Audio('https://www.soundjay.com/snake-hiss-01.mp3');
+                        break;
+                    case 'tiger':
+                        sound = new Audio('https://www.soundjay.com/tiger-roar-01.mp3');
+                        break;
+                    case 'umbrella':
+                        sound = new Audio('https://www.soundjay.com/rain-01.mp3');
+                        break;
+                    case 'violin':
+                        sound = new Audio('https://www.soundjay.com/violin-note-01.mp3');
+                        break;
+                    case 'whale':
+                        sound = new Audio('https://www.soundjay.com/whale-song-01.mp3');
+                        break;
+                    case 'xylophone':
+                        sound = new Audio('https://www.soundjay.com/xylophone-note-01.mp3');
+                        break;
+                    case 'yoyo':
+                        sound = new Audio('https://www.soundjay.com/yoyo-spin-01.mp3');
+                        break;
+                    case 'zebra':
+                        sound = new Audio('https://www.soundjay.com/zebra-call-01.mp3');
+                        break;
+                }
+                sound.play();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

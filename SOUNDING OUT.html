@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Out Words: An, Man, Fan, Jan, Can, Dan, Pan, Ran, Van</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f4ff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .word-section {
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+        .word-section h2 {
+            color: #3f51b5;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .sound-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .sound-button {
+            background-color: #fff;
+            border: 3px solid #3f51b5;
+            border-radius: 15px;
+            padding: 15px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #3f51b5;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .sound-button:hover {
+            transform: scale(1.1);
+            background-color: #e8eaf6;
+        }
+        .sound-button:active {
+            transform: scale(0.95);
+        }
+        .word-button {
+            background-color: #ffeb3b;
+            border: 3px solid #fbc02d;
+            color: #333;
+            font-weight: bold;
+        }
+        .word-button:hover {
+            background-color: #fff9c4;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+            margin: 20px 0;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sound Out Words!</h1>
+    <p>Click the buttons to hear the sounds for each letter and the word. Try sounding them out loud!</p>
+
+    <div class="word-section">
+        <h2>Word: an</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('an', 'an')">an</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: man</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('M', 'Em')">M</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('man', 'man')">man</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: fan</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('F', 'Eff')">F</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('fan', 'fan')">fan</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: jan</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('J', 'Jay')">J</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('jan', 'jan')">jan</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: can</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('C', 'See')">C</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('can', 'can')">can</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: dan</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('D', 'Dee')">D</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('dan', 'dan')">dan</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: pan</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('P', 'Pee')">P</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('pan', 'pan')">pan</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: ran</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('R', 'Ar')">R</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('ran', 'ran')">ran</div>
+        </div>
+    </div>
+
+    <div class="word-section">
+        <h2>Word: van</h2>
+        <div class="sound-container">
+            <div class="sound-button" onclick="playSound('V', 'Vee')">V</div>
+            <div class="sound-button" onclick="playSound('A', 'Ay')">A</div>
+            <div class="sound-button" onclick="playSound('N', 'En')">N</div>
+            <div class="sound-button word-button" onclick="playSound('van', 'van')">van</div>
+        </div>
+    </div>
+
+    <script>
+        // Load voices and select a female voice
+        let femaleVoice = null;
+
+        function loadVoices() {
+            const voices = speechSynthesis.getVoices();
+            // Prefer female-sounding voices (based on common names or en-US)
+            femaleVoice = voices.find(voice => 
+                voice.name.includes('Female') ||
+                voice.name.includes('Samantha') ||
+                voice.name.includes('Zira') ||
+                voice.name.includes('Google US English') ||
+                voice.name.includes('Wavenet-C') ||
+                (voice.lang === 'en-US' && !voice.name.includes('Male'))
+            ) || voices[0]; // Fallback to default voice if no female voice found
+        }
+
+        // Load voices on page load and when voices change
+        loadVoices();
+        speechSynthesis.onvoiceschanged = loadVoices;
+
+        function playSound(label, sound) {
+            const utterance = new SpeechSynthesisUtterance(sound);
+            utterance.rate = 0.8; // Slower for clarity
+            utterance.volume = 1.0;
+            if (femaleVoice) {
+                utterance.voice = femaleVoice;
+            }
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>

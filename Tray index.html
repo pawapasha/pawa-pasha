@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eggs A to Z Learning</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        h1 {
+            color: #ff4500;
+            font-size: 2.5em;
+            text-shadow: 2px 2px #ffd700;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
+            gap: 20px;
+        }
+        .egg-area {
+            background-color: #98fb98;
+            border: 5px solid #32cd32;
+            border-radius: 15px;
+            padding: 20px;
+            width: 60%;
+            min-height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            align-content: flex-start;
+        }
+        .tray {
+            background-color: #ffe4b5;
+            border: 5px solid #ffa500;
+            border-radius: 15px;
+            padding: 20px;
+            width: 30%;
+            min-height: 400px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .egg {
+            width: 60px;
+            height: 80px;
+            background-color: #fff;
+            border: 3px solid #ff69b4;
+            border-radius: 50% 50% 70% 70% / 60% 60% 40% 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff0000;
+            cursor: move;
+            user-select: none;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .egg:hover {
+            transform: scale(1.1);
+        }
+        .tray-slot {
+            width: 60px;
+            height: 80px;
+            border: 2px dashed #4682b4;
+            border-radius: 50% 50% 70% 70% / 60% 60% 40% 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-size: 1.2em;
+            color: #4682b4;
+        }
+        .tray-slot.filled {
+            border: 2px solid #4682b4;
+            background-color: #e0ffff;
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .egg-area, .tray {
+                width: 100%;
+                min-height: 300px;
+            }
+            .tray {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Eggs A to Z</h1>
+    <div class="container">
+        <div class="egg-area" id="eggArea"></div>
+        <div class="tray" id="tray"></div>
+    </div>
+
+    <script>
+        const eggArea = document.getElementById('eggArea');
+        const tray = document.getElementById('tray');
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let currentLetterIndex = 0;
+        let femaleVoice = null;
+
+        // Function to select a female voice
+        function selectFemaleVoice() {
+            const voices = window.speechSynthesis.getVoices();
+            // Common female voice names (varies by system/browser)
+            const femaleVoiceNames = [
+                'Google US English', 'Samantha', 'Victoria', 'Alexandra', 
+                'Microsoft Zira', 'Karen', 'Susan', 'Linda', 'Fiona'
+            ];
+            femaleVoice = voices.find(voice => 
+                femaleVoiceNames.some(name => voice.name.includes(name)) && 
+                voice.lang.includes('en')
+            ) || voices.find(voice => voice.lang.includes('en')); // Fallback to any English voice
+        }
+
+        // Load voices (voices may not be available immediately)
+        window.speechSynthesis.onvoiceschanged = () => {
+            selectFemaleVoice();
+        };
+        // Initial voice selection
+        selectFemaleVoice();
+
+        // Create tray slots labeled A to Z
+        letters.split('').forEach(letter => {
+            const slot = document.createElement('div');
+            slot.className = 'tray-slot';
+            slot.setAttribute('data-letter', letter);
+            slot.textContent = letter;
+            tray.appendChild(slot);
+
+            // Drag and drop events for slots
+            slot.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+            slot.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const letter = e.dataTransfer.getData('text');
+                if (slot.dataset.letter === letter && !slot.classList.contains('filled')) {
+                    const egg = eggArea.querySelector('.egg');
+                    if (egg && egg.textContent === letter) {
+                        slot.classList.add('filled');
+                        egg.remove();
+                        showNextEgg();
+                    }
+                }
+            });
+        });
+
+        // Show the first egg
+        showEgg();
+
+        // Function to show the current egg
+        function showEgg() {
+            if (currentLetterIndex < letters.length) {
+                const letter = letters[currentLetterIndex];
+                const egg = document.createElement('div');
+                egg.className = 'egg';
+                egg.textContent = letter;
+                egg.setAttribute('draggable', true);
+                eggArea.appendChild(egg);
+
+                // Drag events for egg
+                egg.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text', letter);
+                    egg.style.opacity = '0.5';
+                    // Play letter sound using Web Speech API
+                    const utterance = new SpeechSynthesisUtterance(letter);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.8; // Slightly slower for clarity
+                    if (femaleVoice) {
+                        utterance.voice = femaleVoice;
+                    }
+                    window.speechSynthesis.speak(utterance);
+                });
+                egg.addEventListener('dragend', () => {
+                    egg.style.opacity = '1';
+                });
+            }
+        }
+
+        // Function to show the next egg
+        function showNextEgg() {
+            currentLetterIndex++;
+            if (currentLetterIndex < letters.length) {
+                showEgg();
+            } else {
+                // Play completion message
+                const utterance = new SpeechSynthesisUtterance('Great job! All eggs are in the tray!');
+                utterance.lang = 'en-US';
+                if (femaleVoice) {
+                    utterance.voice = femaleVoice;
+                }
+                window.speechSynthesis.speak(utterance);
+                alert('Great job! All eggs are in the tray!');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Slow Reading Practice! 📚🔊</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffeb3b, #4fc3f7); /* Bright gradient! 🌈 */
+            font-family: 'Comic Sans MS', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: auto;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .title {
+            font-size: 48px;
+            color: #d81b60;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ffffff;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        .section-title {
+            font-size: 32px;
+            color: #ff5722;
+            margin-bottom: 10px;
+        }
+        .caption-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .caption-card {
+            background: #fff176;
+            border: 4px solid #ff5722;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #d81b60;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .caption-card:hover {
+            transform: scale(1.1);
+        }
+        .btn {
+            margin: 15px;
+            padding: 15px 30px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .btn:hover {
+            background: #c2185b;
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Fun Slow Reading Practice! 📚🔊</h1>
+        <button class="btn" onclick="readAllCaptions()">READ ALL SLOWLY! 🎙️</button>
+        <button class="btn" onclick="toggleCaptions()">SHOW/HIDE WORDS! 🚀</button>
+        
+        <div class="section">
+            <h2 class="section-title">Short Captions 😺</h2>
+            <div class="caption-list" id="set1">
+                <div class="caption-card" onclick="playPopSound(); speak('pat a dog')">pat a dog</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a cat in a hat')">a cat in a hat</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a sad man')">a sad man</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a pin on a map')">a pin on a map</div>
+                <div class="caption-card" onclick="playPopSound(); speak('pots and pans')">pots and pans</div>
+                <div class="caption-card" onclick="playPopSound(); speak('dad and nan')">dad and nan</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a nap in a cot')">a nap in a cot</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a kid in a cap')">a kid in a cap</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a tin can')">a tin can</div>
+                <div class="caption-card" onclick="playPopSound(); speak('cats and dogs')">cats and dogs</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Captions with To/The 🏃</h2>
+            <div class="caption-list" id="set2">
+                <div class="caption-card" onclick="playPopSound(); speak('a red rug')">a red rug</div>
+                <div class="caption-card" onclick="pollayPopSound(); speak('get to the top')">get to the top</div>
+                <div class="caption-card" onclick="playPopSound(); speak('socks on a mat')">socks on a mat</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a cap on a peg')">a cap on a peg</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a run in the sun')">a run in the sun</div>
+                <div class="caption-card" onclick="playPopSound(); speak('rats on a sack')">rats on a sack</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a pup in mud')">a pup in mud</div>
+                <div class="caption-card" onclick="playPopSound(); speak('run to the den')">run to the den</div>
+                <div class="caption-card" onclick="playPopSound(); speak('mugs and cups')">mugs and cups</div>
+                <div class="caption-card" onclick="playPopSound(); speak('an egg in an egg cup')">an egg in an egg cup</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Instructions & Signs 🐶</h2>
+            <div class="caption-list" id="set3">
+                <div class="caption-card" onclick="playPopSound(); speak('a hug and a kiss')">a hug and a kiss</div>
+                <div class="caption-card" onclick="playPopSound(); speak('on top of the rock')">on top of the rock</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a bag of nuts')">a bag of nuts</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a huff and puff')">a huff and puff</div>
+                <div class="caption-card" onclick="playPopSound(); speak('go to the log hut')">go to the log hut</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a hot hob')">a hot hob</div>
+                <div class="caption-card" onclick="playPopSound(); speak('sit back to back')">sit back to back</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a duck and hen')">a duck and hen</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a cat on a bed')">a cat on a bed</div>
+                <div class="caption-card" onclick="playPopSound(); speak('to the top of the hill')">to the top of the hill</div>
+                <div class="caption-card" onclick="playPopSound(); speak('get off the bus')">get off the bus</div>
+                <div class="caption-card" onclick="playPopSound(); speak('no lid on the pan')">no lid on the pan</div>
+                <div class="caption-card" onclick="playPopSound(); speak('pack a pen in a bag')">pack a pen in a bag</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a doll in a cot')">a doll in a cot</div>
+                <div class="caption-card" onclick="playPopSound(); speak('a cat and big fat rat')">a cat and big fat rat</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const synth = window.speechSynthesis;
+        let isReadingAll = false;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Pop sound for clicking a caption
+        function playPopSound() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // High pitch for pop
+            gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // Ding sound for starting/stopping Read All
+        function playDingSound() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // Bright ding
+            gainNode.gain.setValueAtTime(0.7, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function speak(text) {
+            if (isReadingAll) return; // Prevent overlapping during "Read All"
+            synth.cancel(); // Stop any ongoing speech
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            const voices = synth.getVoices();
+            utterance.voice = voices.find(voice => voice.name.includes('Google US English')) || voices[0];
+            utterance.pitch = 1.2; // Fun, kid-friendly pitch
+            utterance.rate = 0.7; // Slower speed for easy understanding
+            utterance.volume = 1;
+            synth.speak(utterance);
+        }
+
+        function readAllCaptions() {
+            if (isReadingAll) {
+                synth.cancel();
+                isReadingAll = false;
+                playDingSound(); // Ding when stopping
+                return;
+            }
+            isReadingAll = true;
+            synth.cancel(); // Clear any ongoing speech
+            playDingSound(); // Ding when starting
+            const captions = [
+                'pat a dog', 'a cat in a hat', 'a sad man', 'a pin on a map', 'pots and pans',
+                'dad and nan', 'a nap in a cot', 'a kid in a cap', 'a tin can', 'cats and dogs',
+                'a red rug', 'get to the top', 'socks on a mat', 'a cap on a peg', 'a run in the sun',
+                'rats on a sack', 'a pup in mud', 'run to the den', 'mugs and cups', 'an egg in an egg cup',
+                'a hug and a kiss', 'on top of the rock', 'a bag of nuts', 'a huff and puff', 'go to the log hut',
+                'a hot hob', 'sit back to back', 'a duck and hen', 'a cat on a bed', 'to the top of the hill',
+                'get off the bus', 'no lid on the pan', 'pack a pen in a bag', 'a doll in a cot', 'a cat and big fat rat'
+            ];
+            let index = 0;
+
+            function speakNext() {
+                if (index >= captions.length || !isReadingAll) {
+                    isReadingAll = false;
+                    playDingSound(); // Ding when finished
+                    return;
+                }
+                const utterance = new SpeechSynthesisUtterance(captions[index]);
+                utterance.lang = 'en-US';
+                utterance.voice = voices.find(voice => voice.name.includes('Google US English')) || voices[0];
+                utterance.pitch = 1.2;
+                utterance.rate = 0.7; // Slower speed for kids
+                utterance.volume = 1;
+                utterance.onend = () => {
+                    index++;
+                    setTimeout(speakNext, 1500); // 1.5-second pause for slow reading
+                };
+                synth.speak(utterance);
+            }
+
+            speakNext();
+        }
+
+        function toggleCaptions() {
+            const sets = [document.getElementById('set1'), document.getElementById('set2'), document.getElementById('set3')];
+            sets.forEach(set => set.classList.toggle('hidden'));
+            if (isReadingAll) {
+                synth.cancel();
+                isReadingAll = false;
+                playDingSound();
+            }
+        }
+
+        // Load voices
+        window.speechSynthesis.onvoiceschanged = () => {
+            // Voices loaded
+        };
+    </script>
+</body>
+</html>

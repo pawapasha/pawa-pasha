@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Fun Talking Words! 📚🔊</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffeb3b, #4fc3f7); /* Bright gradient! 🌈 */
+            font-family: 'Comic Sans MS', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: auto;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .title {
+            font-size: 48px;
+            color: #d81b60;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ffffff;
+        }
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .word-card {
+            background: #fff176;
+            border: 4px solid #ff5722;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #d81b60;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .word-card:hover {
+            transform: scale(1.1);
+        }
+        .btn {
+            margin: 15px;
+            padding: 15px 30px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .btn:hover {
+            background: #c2185b;
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">100 Fun Talking Words! 📚🔊</h1>
+        <button class="btn" onclick="readAllWords()">READ ALL! 🎙️</button>
+        <button class="btn" onclick="toggleWords()">SHOW/HIDE WORDS! 🚀</button>
+        <div id="word-list" class="word-list">
+            <div class="word-card" onclick="playPopSound(); speak('the')">1. the</div>
+            <div class="word-card" onclick="playPopSound(); speak('and')">2. and</div>
+            <div class="word-card" onclick="playPopSound(); speak('a')">3. a</div>
+            <div class="word-card" onclick="playPopSound(); speak('to')">4. to</div>
+            <div class="word-card" onclick="playPopSound(); speak('said')">5. said</div>
+            <div class="word-card" onclick="playPopSound(); speak('in')">6. in</div>
+            <div class="word-card" onclick="playPopSound(); speak('he')">7. he</div>
+            <div class="word-card" onclick="playPopSound(); speak('i')">8. i</div>
+            <div class="word-card" onclick="playPopSound(); speak('off')">9. off</div>
+            <div class="word-card" onclick="playPopSound(); speak('it')">10. it</div>
+            <div class="word-card" onclick="playPopSound(); speak('was')">11. was</div>
+            <div class="word-card" onclick="playPopSound(); speak('you')">12. you</div>
+            <div class="word-card" onclick="playPopSound(); speak('they')">13. they</div>
+            <div class="word-card" onclick="playPopSound(); speak('on')">14. on</div>
+            <div class="word-card" onclick="playPopSound(); speak('she')">15. she</div>
+            <div class="word-card" onclick="playPopSound(); speak('is')">16. is</div>
+            <div class="word-card" onclick="playPopSound(); speak('for')">17. for</div>
+            <div class="word-card" onclick="playPopSound(); speak('at')">18. at</div>
+            <div class="word-card" onclick="playPopSound(); speak('his')">19. his</div>
+            <div class="word-card" onclick="playPopSound(); speak('but')">20. but</div>
+            <div class="word-card" onclick="playPopSound(); speak('that')">21. that</div>
+            <div class="word-card" onclick="playPopSound(); speak('with')">22. with</div>
+            <div class="word-card" onclick="playPopSound(); speak('or')">23. or</div>
+            <div class="word-card" onclick="playPopSound(); speak('we')">24. we</div>
+            <div class="word-card" onclick="playPopSound(); speak('can')">25. can</div>
+            <div class="word-card" onclick="playPopSound(); speak('are')">26. are</div>
+            <div class="word-card" onclick="playPopSound(); speak('up')">27. up</div>
+            <div class="word-card" onclick="playPopSound(); speak('had')">28. had</div>
+            <div class="word-card" onclick="playPopSound(); speak('my')">29. my</div>
+            <div class="word-card" onclick="playPopSound(); speak('her')">30. her</div>
+            <div class="word-card" onclick="playPopSound(); speak('what')">31. what</div>
+            <div class="word-card" onclick="playPopSound(); speak('there')">32. there</div>
+            <div class="word-card" onclick="playPopSound(); speak('out')">33. out</div>
+            <div class="word-card" onclick="playPopSound(); speak('this')">34. this</div>
+            <div class="word-card" onclick="playPopSound(); speak('have')">35. have</div>
+            <div class="word-card" onclick="playPopSound(); speak('went')">36. went</div>
+            <div class="word-card" onclick="playPopSound(); speak('be')">37. be</div>
+            <div class="word-card" onclick="playPopSound(); speak('like')">38. like</div>
+            <div class="word-card" onclick="playPopSound(); speak('some')">39. some</div>
+            <div class="word-card" onclick="playPopSound(); speak('so')">40. so</div>
+            <div class="word-card" onclick="playPopSound(); speak('not')">41. not</div>
+            <div class="word-card" onclick="playPopSound(); speak('then')">42. then</div>
+            <div class="word-card" onclick="playPopSound(); speak('were')">43. were</div>
+            <div class="word-card" onclick="playPopSound(); speak('go')">44. go</div>
+            <div class="word-card" onclick="playPopSound(); speak('little')">45. little</div>
+            <div class="word-card" onclick="playPopSound(); speak('as')">46. as</div>
+            <div class="word-card" onclick="playPopSound(); speak('no')">47. no</div>
+            <div class="word-card" onclick="playPopSound(); speak('mum')">48. mum</div>
+            <div class="word-card" onclick="playPopSound(); speak('one')">49. one</div>
+            <div class="word-card" onclick="playPopSound(); speak('the')">50. the</div>
+            <div class="word-card" onclick="playPopSound(); speak('do')">51. do</div>
+            <div class="word-card" onclick="playPopSound(); speak('me')">52. me</div>
+            <div class="word-card" onclick="playPopSound(); speak('down')">53. down</div>
+            <div class="word-card" onclick="playPopSound(); speak('dad')">54. dad</div>
+            <div class="word-card" onclick="playPopSound(); speak('big')">55. big</div>
+            <div class="word-card" onclick="playPopSound(); speak('when')">56. when</div>
+            <div class="word-card" onclick="playPopSound(); speak('it\'s')">57. it's</div>
+            <div class="word-card" onclick="playPopSound(); speak('see')">58. see</div>
+            <div class="word-card" onclick="playPopSound(); speak('looked')">59. looked</div>
+            <div class="word-card" onclick="playPopSound(); speak('very')">60. very</div>
+            <div class="word-card" onclick="playPopSound(); speak('look')">61. look</div>
+            <div class="word-card" onclick="playPopSound(); speak('don\'t')">62. don't</div>
+            <div class="word-card" onclick="playPopSound(); speak('come')">63. come</div>
+            <div class="word-card" onclick="playPopSound(); speak('will')">64. will</div>
+            <div class="word-card" onclick="playPopSound(); speak('into')">65. into</div>
+            <div class="word-card" onclick="playPopSound(); speak('back')">66. back</div>
+            <div class="word-card" onclick="playPopSound(); speak('from')">67. from</div>
+            <div class="word-card" onclick="playPopSound(); speak('children')">68. children</div>
+            <div class="word-card" onclick="playPopSound(); speak('him')">69. him</div>
+            <div class="word-card" onclick="playPopSound(); speak('Mr.')">70. Mr.</div>
+            <div class="word-card" onclick="playPopSound(); speak('get')">71. get</div>
+            <div class="word-card" onclick="playPopSound(); speak('just')">72. just</div>
+            <div class="word-card" onclick="playPopSound(); speak('now')">73. now</div>
+            <div class="word-card" onclick="playPopSound(); speak('came')">74. came</div>
+            <div class="word-card" onclick="playPopSound(); speak('oh')">75. oh</div>
+            <div class="word-card" onclick="playPopSound(); speak('about')">76. about</div>
+            <div class="word-card" onclick="playPopSound(); speak('got')">77. got</div>
+            <div class="word-card" onclick="playPopSound(); speak('their')">78. their</div>
+            <div class="word-card" onclick="playPopSound(); speak('people')">79. people</div>
+            <div class="word-card" onclick="playPopSound(); speak('your')">80. your</div>
+            <div class="word-card" onclick="playPopSound(); speak('put')">81. put</div>
+            <div class="word-card" onclick="playPopSound(); speak('could')">82. could</div>
+            <div class="word-card" onclick="playPopSound(); speak('house')">83. house</div>
+            <div class="word-card" onclick="playPopSound(); speak('old')">84. old</div>
+            <div class="word-card" onclick="playPopSound(); speak('too')">85. too</div>
+            <div class="word-card" onclick="playPopSound(); speak('buy')">86. buy</div>
+            <div class="word-card" onclick="playPopSound(); speak('day')">87. day</div>
+            <div class="word-card" onclick="playPopSound(); speak('made')">88. made</div>
+            <div class="word-card" onclick="playPopSound(); speak('time')">89. time</div>
+            <div class="word-card" onclick="playPopSound(); speak('I\'m')">90. I'm</div>
+            <div class="word-card" onclick="playPopSound(); speak('if')">91. if</div>
+            <div class="word-card" onclick="playPopSound(); speak('help')">92. help</div>
+            <div class="word-card" onclick="playPopSound(); speak('Mrs.')">93. Mrs.</div>
+            <div class="word-card" onclick="playPopSound(); speak('called')">94. called</div>
+            <div class="word-card" onclick="playPopSound(); speak('here')">95. here</div>
+            <div class="word-card" onclick="playPopSound(); speak('off')">96. off</div>
+            <div class="word-card" onclick="playPopSound(); speak('asked')">97. asked</div>
+            <div class="word-card" onclick="playPopSound(); speak('sow')">98. sow</div>
+            <div class="word-card" onclick="playPopSound(); speak('make')">99. make</div>
+            <div class="word-card" onclick="playPopSound(); speak('an')">100. an</div>
+        </div>
+    </div>
+
+    <script>
+        const synth = window.speechSynthesis;
+        let isReadingAll = false;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Pop sound for clicking a word
+        function playPopSound() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // High pitch for pop
+            gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // Ding sound for starting/stopping Read All
+        function playDingSound() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // Bright ding
+            gainNode.gain.setValueAtTime(0.7, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function speak(text) {
+            if (isReadingAll) return; // Prevent overlapping during "Read All"
+            synth.cancel(); // Stop any ongoing speech
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            const voices = synth.getVoices();
+            utterance.voice = voices.find(voice => voice.name.includes('Google US English')) || voices[0];
+            utterance.pitch = 1.2; // Fun, kid-friendly pitch
+            utterance.rate = 1; // Normal speed
+            utterance.volume = 1;
+            synth.speak(utterance);
+        }
+
+        function readAllWords() {
+            if (isReadingAll) {
+                synth.cancel();
+                isReadingAll = false;
+                playDingSound(); // Ding when stopping
+                return;
+            }
+            isReadingAll = true;
+            synth.cancel(); // Clear any ongoing speech
+            playDingSound(); // Ding when starting
+            const words = [
+                'the', 'and', 'a', 'to', 'said', 'in', 'he', 'i', 'off', 'it',
+                'was', 'you', 'they', 'on', 'she', 'is', 'for', 'at', 'his', 'but',
+                'that', 'with', 'or', 'we', 'can', 'are', 'up', 'had', 'my', 'her',
+                'what', 'there', 'out', 'this', 'have', 'went', 'be', 'like', 'some', 'so',
+                'not', 'then', 'were', 'go', 'little', 'as', 'no', 'mum', 'one', 'the',
+                'do', 'me', 'down', 'dad', 'big', 'when', 'it\'s', 'see', 'looked', 'very',
+                'look', 'don\'t', 'come', 'will', 'into', 'back', 'from', 'children', 'him', 'Mr.',
+                'get', 'just', 'now', 'came', 'oh', 'about', 'got', 'their', 'people', 'your',
+                'put', 'could', 'house', 'old', 'too', 'buy', 'day', 'made', 'time', 'I\'m',
+                'if', 'help', 'Mrs.', 'called', 'here', 'off', 'asked', 'sow', 'make', 'an'
+            ];
+            let index = 0;
+
+            function speakNext() {
+                if (index >= words.length || !isReadingAll) {
+                    isReadingAll = false;
+                    playDingSound(); // Ding when finished
+                    return;
+                }
+                const utterance = new SpeechSynthesisUtterance(words[index]);
+                utterance.lang = 'en-US';
+                utterance.voice = voices.find(voice => voice.name.includes('Google US English')) || voices[0];
+                utterance.pitch = 1.2;
+                utterance.rate = 1;
+                utterance.volume = 1;
+                utterance.onend = () => {
+                    index++;
+                    setTimeout(speakNext, 500); // Pause between words
+                };
+                synth.speak(utterance);
+            }
+
+            speakNext();
+        }
+
+        function toggleWords() {
+            const wordList = document.getElementById('word-list');
+            wordList.classList.toggle('hidden');
+            if (isReadingAll) {
+                synth.cancel();
+                isReadingAll = false;
+                playDingSound();
+            }
+        }
+
+        // Load voices
+        window.speechSynthesis.onvoiceschanged = () => {
+            // Voices loaded
+        };
+    </script>
+</body>
+</html>

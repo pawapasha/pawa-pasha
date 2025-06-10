@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun with -it Words!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+        }
+        h1 {
+            color: #7b1fa2;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .word-card {
+            background: #64dd17;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            color: #333;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .word-card:hover {
+            transform: scale(1.1);
+            background: #76ff03;
+        }
+        .word-card:active {
+            transform: scale(0.95);
+        }
+        #restart {
+            background: #0288d1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #restart:hover {
+            background: #0277bd;
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun with -it Words!</h1>
+        <div class="word-grid" id="wordGrid">
+            <!-- Word cards will be added by JavaScript -->
+        </div>
+        <button id="restart" class="hidden">Play Again!</button>
+    </div>
+
+    <script>
+        const words = ['it', 'fit', 'sit', 'lit', 'wit', 'kit', 'spit', 'hit', 'quit', 'pit', 'knit'];
+        const wordGrid = document.getElementById('wordGrid');
+        const restartButton = document.getElementById('restart');
+        let spokenWords = new Set();
+
+        function createWordCards() {
+            wordGrid.innerHTML = '';
+            spokenWords.clear();
+            restartButton.classList.add('hidden');
+            words.forEach(word => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.textContent = word;
+                card.addEventListener('click', () => {
+                    speakWord(word);
+                    card.classList.add('pulse');
+                    setTimeout(() => card.classList.remove('pulse'), 500);
+                    checkGameStatus(word);
+                });
+                wordGrid.appendChild(card);
+            });
+        }
+
+        function speakWord(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.rate = 0.8;
+            utterance.pitch = 1.2;
+            speechSynthesis.speak(utterance);
+            spokenWords.add(word);
+        }
+
+        function checkGameStatus(word) {
+            if (spokenWords.size === words.length) {
+                restartButton.classList.remove('hidden');
+                const finalMessage = new SpeechSynthesisUtterance("Wow! You said all the -it words!");
+                speechSynthesis.speak(finalMessage);
+            }
+        }
+
+        restartButton.addEventListener('click', createWordCards);
+
+        createWordCards();
+    </script>
+</body>
+</html>

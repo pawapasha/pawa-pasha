@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn AT Words</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #fffacd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        h1 {
+            color: #ff4500;
+            font-size: 2.5em;
+            text-shadow: 2px 2px #ffd700;
+            margin-bottom: 20px;
+        }
+        .word-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            background-color: #98fb98;
+            border: 5px solid #32cd32;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            padding: 20px;
+            min-height: 400px;
+        }
+        .word-card {
+            background-color: #ffffff;
+            border: 3px solid #ff69b4;
+            border-radius: 10px;
+            width: 150px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .word-card:hover {
+            transform: scale(1.1);
+            background-color: #e0ffff;
+        }
+        .word-text {
+            font-size: 1.5em;
+            color: #ff0000;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .word-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .word-container {
+                grid-template-columns: repeat(2, 1fr);
+                min-height: 300px;
+            }
+            .word-card {
+                width: 120px;
+                height: 160px;
+            }
+            .word-text {
+                font-size: 1.2em;
+            }
+            .word-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        @media (max-width: 480px) {
+            .word-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Learn AT Words</h1>
+    <div class="word-container" id="wordContainer"></div>
+
+    <script>
+        const wordContainer = document.getElementById('wordContainer');
+        const words = [
+            { text: 'at', image: 'https://img.icons8.com/color/96/000000/speech-bubble.png' },
+            { text: 'rat', image: 'https://img.icons8.com/color/96/000000/mouse-animal.png' },
+            { text: 'cat', image: 'https://img.icons8.com/color/96/000000/cat.png' },
+            { text: 'pat', image: 'https://img.icons8.com/color/96/000000/hand.png' },
+            { text: 'hat', image: 'https://img.icons8.com/color/96/000000/witch-hat.png' },
+            { text: 'bat', image: 'https://img.icons8.com/color/96/000000/baseball.png' },
+            { text: 'mat', image: 'https://img.icons8.com/color/96/000000/yoga-mat.png' },
+            { text: 'sat', image: 'https://img.icons8.com/color/96/000000/sitting.png' }
+        ];
+        let femaleVoice = null;
+
+        // Function to select a female voice
+        function selectFemaleVoice() {
+            const voices = window.speechSynthesis.getVoices();
+            const femaleVoiceNames = [
+                'Google US English', 'Samantha', 'Victoria', 'Alexandra',
+                'Microsoft Zira', 'Karen', 'Susan', 'Linda', 'Fiona'
+            ];
+            femaleVoice = voices.find(voice =>
+                femaleVoiceNames.some(name => voice.name.includes(name)) && 
+                voice.lang.includes('en')
+            ) || voices.find(voice => voice.lang.includes('en')); // Fallback to any English voice
+        }
+
+        // Load voices
+        window.speechSynthesis.onvoiceschanged = () => {
+            selectFemaleVoice();
+        };
+        selectFemaleVoice();
+
+        // Function to speak a word
+        function speakWord(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.8; // Slightly slower for clarity
+            if (femaleVoice) {
+                utterance.voice = femaleVoice;
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Function to show all words
+        function showAllWords() {
+            wordContainer.innerHTML = '';
+            words.forEach(word => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.setAttribute('data-word', word.text);
+                card.innerHTML = `
+                    <img src="${word.image}" alt="${word.text}" class="word-image">
+                    <div class="word-text">${word.text}</div>
+                `;
+                card.addEventListener('click', () => {
+                    speakWord(word.text);
+                });
+                wordContainer.appendChild(card);
+            });
+        }
+
+        // Show all words on load
+        showAllWords();
+    </script>
+</body>
+</html>
